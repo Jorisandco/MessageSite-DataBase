@@ -11,7 +11,7 @@ if (isset($_SESSION['username'])) {
 }
 
 $message = htmlspecialchars($_POST['message']);
-if (!isset($_FILES['imagetheimage'])) {
+if ($_FILES['imagetheimage']['error'] == 4) {
     $sql = "
     insert into messages (Message, User)
     values (:message, :name);
@@ -20,7 +20,7 @@ if (!isset($_FILES['imagetheimage'])) {
     $stmt->bindParam(':message', $message);
     $stmt->bindParam(':name', $name);
     $stmt->execute();
-} else if (isset($_FILES['imagetheimage'])) {
+} else{
     $targetDir = "../uploads/";
     $targetFile = $targetDir . basename($_FILES["imagetheimage"]["name"]);
     $uploadOk = 1;
@@ -69,7 +69,7 @@ if (!isset($_FILES['imagetheimage'])) {
     // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["imagetheimage"]["tmp_name"], $targetFile)) {
-            echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
+            echo "The file ". basename( $_FILES["imagetheimage"]["name"]). " has been uploaded.";
             $imagename = basename($_FILES['imagetheimage']['name']); // Fix: Extract the file name and extension using basename()
             $sql = "
             insert into messages (Message, User, Image)

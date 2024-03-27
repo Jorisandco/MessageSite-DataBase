@@ -1,14 +1,22 @@
 <?php
 session_start();
+include 'nonpages/Database.php';
+connectToDatabase();
 if (isset($_SESSION['username'])) {
     $name = null;
-    $name .= $_SESSION['username'];
+    $sql = "SELECT UserName, admin FROM userdata";
+    $result = $conn->query($sql); // Add this line to execute the query
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        if ($_SESSION['username'] == $row['UserName'] && $row['admin'] == 1) {
+            $name .= $_SESSION['username'];
+            $name .= " (admin)";
+        } else if ($_SESSION['username'] == $row['UserName']){
+            $name .= $_SESSION['username'];
+        }
+    }
 } else {
     $name = "guest";
 }
-include 'nonpages/Database.php';
-connectToDatabase();
-
 // rest of your code
 
 $sql = "SELECT Message, User, Image FROM messages";
@@ -23,12 +31,12 @@ if ($result->rowCount() > 0) {
         $messages .= $row["User"];
         $messages .= "</h3>";
         $messages .= "<br>";
-        $messages .= "<p id=\"message\">";
-        $messages .= $row["Message"];
-        $messages .= "</p>";
         if (!empty($row["Image"])) {
             $messages .= "<img src=\"uploads/" . $row["Image"] . "\" alt=\"Image\">";
         }
+        $messages .= "<p id=\"message\">";
+        $messages .= $row["Message"];
+        $messages .= "</p>";
         $messages .= "</div>";
     }
 }

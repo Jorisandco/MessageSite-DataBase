@@ -13,21 +13,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         echo "Passwords do not match";
         return;
     } else {
-        try {
-            $conn = new PDO("mysql:host=localhost;dbname=your_database_name", "your_username", "your_password");
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            $stmt = $conn->prepare("INSERT INTO userdata (UserName, Password) VALUES (:username, :password)");
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':password', $password);
-            $stmt->execute();
-
-            echo "New record created successfully";
-        } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-
+        $sql = "INSERT INTO UserData (username, password, admin) VALUES ('$username', '$password', 0)";
         $_SESSION['username'] = $username;
+        $row = $conn->exec($sql);
         header("Location: ../index.php");
 
         echo "signup failed";
