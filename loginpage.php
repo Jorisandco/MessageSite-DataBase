@@ -3,7 +3,7 @@ session_start();
 if (isset($_POST['username']) && isset($_POST['password'])) {
 
     // connect to the database
-    include 'nonpages/connect to database.php';
+    include 'nonpages/Database.php';
     connectToDatabase();
     // get data login
     $username = htmlspecialchars($_POST['username']);
@@ -12,9 +12,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $sql = "SELECT * FROM UserData WHERE username = '$username' AND password = '$password'";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
+    if ($result->rowCount() > 0) {
         echo "Login successful";
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             echo "Welcome " . $row['username'];
         }
         $_SESSION['username'] = $username;

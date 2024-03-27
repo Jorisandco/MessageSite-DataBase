@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['username']) && isset($_POST['password'])) {
     // connect to the database
-    include 'nonpages/connect to database.php';
+    include 'nonpages/Database.php';
     session_start();
     connectToDatabase();
     // get data login
@@ -13,15 +13,20 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         echo "Passwords do not match";
         return;
     } else {
-        $sql = "
-        insert into userdata (UserName, Password)
-        values ('$username', '$password');
-        ";
-        if($conn -> query($sql) === TRUE){
+        try {
+            $conn = new PDO("mysql:host=localhost;dbname=your_database_name", "your_username", "your_password");
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $stmt = $conn->prepare("INSERT INTO userdata (UserName, Password) VALUES (:username, :password)");
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':password', $password);
+            $stmt->execute();
+
             echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn -> $error;
+        } catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
+
         $_SESSION['username'] = $username;
         header("Location: ../index.php");
 

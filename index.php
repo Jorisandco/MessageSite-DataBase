@@ -3,18 +3,20 @@ session_start();
 if (isset($_SESSION['username'])) {
     $name = null;
     $name .= $_SESSION['username'];
+} else {
+    $name = "guest";
 }
-include 'nonpages/connect to database.php';
+include 'nonpages/Database.php';
 connectToDatabase();
 
 // rest of your code
 
-$sql = "SELECT Message, User FROM messages";
+$sql = "SELECT Message, User, Image FROM messages";
 $result = $conn->query($sql);
 $messages = null;
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
+if ($result->rowCount() > 0) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         $messages .= "<br>";
         $messages .= "<div class=\"textbox\">";
         $messages .= "<h3 id=\"name\">";
@@ -24,6 +26,9 @@ if ($result->num_rows > 0) {
         $messages .= "<p id=\"message\">";
         $messages .= $row["Message"];
         $messages .= "</p>";
+        if (!empty($row["Image"])) {
+            $messages .= "<img src=\"uploads/" . $row["Image"] . "\" alt=\"Image\">";
+        }
         $messages .= "</div>";
     }
 }
@@ -45,18 +50,20 @@ if ($result->num_rows > 0) {
         <div class="header">
             <a href="loginpage.php">Login</a>
             <a href="signup.php">Sign up</a>
+            <br>
+            <h1>username: <?= $name ?></h1>
         </div>
         <div class="message">
             <?= $messages ?>
         </div>
         <div class="message-form">
-            <form method="post" action="nonpages/submit.php">
-                <input type="text" name="message" id="message">
-                <input type="submit" value="Send">
+            <form method="post" action="nonpages/submit.php" enctype="multipart/form-data">
+                <textarea type="text" name="message" id="message2" placeholder="Message..."></textarea>
+                <input type="file" name="imagetheimage" id="image">
+                <input type="submit" id="sendbtn" value="Send">
             </form>
         </div>
     </div>
 </body>
 <script>makeCookieUser("<?= $name ?>")</script>
-
 </html>

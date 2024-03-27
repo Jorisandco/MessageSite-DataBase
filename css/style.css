@@ -25,6 +25,7 @@
 
 .message {
     grid-area: message;
+    overflow-y: auto;
 }
 
 .message-form {
@@ -47,4 +48,27 @@
 
 #name {
     border-bottom: 3px black solid;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#message2{
+    border-radius: 20px;
+    border: 2px solid #000;
+    margin: 15px;
+    width: 60%;
+    resize: none;
+    padding: 5px;
+}
+
+#sendbtn{
+    border-radius: 20px;
+    border: 2px solid #000;
+    margin: 15px;
+    height: 25px;
+    width: 40px;
 }
