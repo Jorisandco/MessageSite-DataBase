@@ -1,8 +1,13 @@
 <?php
+session_start();
 include 'connect to database.php';
 connectToDatabase();
 $errors = array();
-$name = "empty";
+if(isset($_SESSION['username'])){
+    $name = null;
+    $name .= $_SESSION['username'];
+}
+$name = "guest";
 $message = htmlspecialchars($_POST['message']);
 $sql = "
 insert into messages (Message, User)
