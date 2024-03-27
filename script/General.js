@@ -19,5 +19,4 @@ function getCookieUser() {
     }
     return "not found";
 }
-
 getCookieUser();

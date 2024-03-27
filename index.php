@@ -50,8 +50,11 @@ if ($result->rowCount() > 0) {
         <div class="header">
             <a href="loginpage.php">Login</a>
             <a href="signup.php">Sign up</a>
+            <a href="nonpages/unset_session.php">logout</a>
             <br>
-            <h1>username: <?= $name ?></h1>
+            <h1>username:
+                <?= $name ?>
+            </h1>
         </div>
         <div class="message">
             <?= $messages ?>
@@ -65,5 +68,7 @@ if ($result->rowCount() > 0) {
         </div>
     </div>
 </body>
-<script>makeCookieUser("<?= $name ?>")</script>
+<script>makeCookieUser("<?= $name ?>")
+</script>
+
 </html>
