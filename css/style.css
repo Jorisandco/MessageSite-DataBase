@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.textbox{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #000;
+    max-width: 40%;
+    min-width: 10%;
+    width: fit-content;
+    height: fit-content;
+    box-shadow: #0000007d 2px 1px;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+#name{
+    border-bottom: 3px black solid;
+}
