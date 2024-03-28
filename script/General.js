@@ -1,6 +1,6 @@
 console.log("General.js loaded");
 function makeCookieUser(username){
-    const expiryDate = new Date();
+    const expiryDate = new Date(Date.now(30 * 24 * 60 * 60 * 1000));
     expiryDate.setMonth(expiryDate.getMonth() + 1);
     document.cookie = `loggedinUser=${username}; expires=${expiryDate.toUTCString()};path=/`;
     console.log("made cookie");

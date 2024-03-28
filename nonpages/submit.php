@@ -85,5 +85,6 @@ if ($_FILES['imagetheimage']['error'] == 4) {
         }
     }
 }
+
 var_dump($_FILES);
 header("Location: ../index.php");

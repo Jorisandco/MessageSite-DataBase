@@ -70,7 +70,7 @@ if ($result->rowCount() > 0) {
         <div class="message-form">
             <form method="post" action="nonpages/submit.php" enctype="multipart/form-data">
                 <textarea type="text" name="message" id="message2" placeholder="Message..."></textarea>
-                <input type="file" name="imagetheimage" id="image">
+                <input type="file" name="imagetheimage" id="imageup">
                 <input type="submit" id="sendbtn" value="Send">
             </form>
         </div>

@@ -32,7 +32,6 @@
     grid-area: message-form;
 }
 
-
 .textbox {
     display: flex;
     flex-direction: column;
@@ -71,4 +70,11 @@ form{
     margin: 15px;
     height: 25px;
     width: 40px;
+}
+#imageup{
+    border-radius: 20px;
+    border: 2px solid #000;
+    margin: 15px;
+    height: 25px;
+    width: auto;
 }
