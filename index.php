@@ -34,7 +34,7 @@ if ($result->rowCount() > 0) {
         if (!empty($row["Image"])) {
             $messages .= "<img class=\"image\" src=\"uploads/" . $row["Image"] . "\" alt=\"Image\">";
         }
-        $messages .= "<p id=\"message\">";
+        $messages .= "<p class=\"messaget\">";
         $messages .= $row["Message"];
         $messages .= "</p>";
         $messages .= "</div>";

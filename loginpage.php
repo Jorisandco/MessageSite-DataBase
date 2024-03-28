@@ -15,15 +15,17 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     if ($result->rowCount() > 0) {
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            if($row['password'] == $password && $row['username'] == $_POST['username']) {
-            echo "Welcome " . $row['username'];
-            echo "Login successful";
+            if ($row['password'] == $password && $row['username'] == $_POST['username']) {
+                echo "Welcome " . $row['username'];
+                echo "Login successful";
+            }
+            $_SESSION['username'] = $username;
+            header("Location: ../index.php");
         }
-        $_SESSION['username'] = $username;
-        header("Location: ../index.php");
-    } }else {
+    } else {
         echo "Login failed";
-    }}
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,11 +38,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 </head>
 
 <body>
-    <form method="post" action="loginpage.php">
-        <input type="text" name="username" id="username">
-        <input type="password" name="password" id="password">
-        <input type="submit" value="Login">
-    </form>
+    <div class="logincontainer">
+        <form id="loginfrom" method="post" action="loginpage.php">
+        <h1 class="stittle">Login</h1>
+            <input type="text" name="username" id="username" placeholder="username">
+            <input type="password" name="password" id="password" placeholder="password">
+            <input type="submit" value="Login">
+        </form>
+    </div>
 </body>
 
 </html>

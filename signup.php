@@ -39,19 +39,24 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>signup</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <form method="post" action="signup.php">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" required>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required>
-        <label for="password2">Confirm Password</label>
-        <input type="password" name="password2" id="password" required>
-        <input type="submit" value="Login">
-    </form>
+    <div class="logincontainer">
+        <form id="loginfrom" method="post" action="signup.php">
+            <h1 class="stittle">signup</h1>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+            <label for="password2">Confirm Password</label>
+            <input type="password" name="password2" id="password" required>
+            <input type="submit" value="Login">
+        </form>
+    </div>
 </body>
 <script src="js/script.js"></script>
+
 </html>

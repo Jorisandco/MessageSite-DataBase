@@ -58,7 +58,7 @@ form{
     padding: 8px;
 }
 
-#message2{
+#message2,#username,#password{
     border-radius: 20px;
     border: 2px solid #000;
     margin: 5px;
@@ -86,4 +86,32 @@ form{
     margin: 20px;
     max-width: 250px;
     height: auto;
+}
+
+#loginfrom{
+    box-shadow: #0000007d 2px 3px;
+    border-radius: 20px;
+    border: 2px solid #000;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    flex-direction: column;
+    height: 40%;
+}
+
+.logincontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.stittle{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.messaget{
+    font-size: 20px;
 }
