@@ -32,7 +32,7 @@ if ($result->rowCount() > 0) {
         $messages .= "</h3>";
         $messages .= "<br>";
         if (!empty($row["Image"])) {
-            $messages .= "<img src=\"uploads/" . $row["Image"] . "\" alt=\"Image\">";
+            $messages .= "<img class=\"image\" src=\"uploads/" . $row["Image"] . "\" alt=\"Image\">";
         }
         $messages .= "<p id=\"message\">";
         $messages .= $row["Message"];

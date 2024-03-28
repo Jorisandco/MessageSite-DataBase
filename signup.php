@@ -13,12 +13,23 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         echo "Passwords do not match";
         return;
     } else {
-        $sql = "INSERT INTO UserData (username, password, admin) VALUES ('$username', '$password', 0)";
-        $_SESSION['username'] = $username;
-        $row = $conn->exec($sql);
-        header("Location: ../index.php");
+        // Check if the username is already taken
+        $checkUsernameQuery = "SELECT * FROM UserData WHERE username = '$username'";
+        $checkUsernameResult = $conn->query($checkUsernameQuery);
+        if ($checkUsernameResult->rowCount() > 0) {
+            echo "Username already taken";
+            return;
+        }
 
-        echo "signup failed";
+        // Insert the new user into the database
+        $insertQuery = "INSERT INTO UserData (username, password, admin) VALUES ('$username', '$password', 0)";
+        $insertResult = $conn->exec($insertQuery);
+        if ($insertResult) {
+            $_SESSION['username'] = $username;
+            header("Location: ../index.php");
+        } else {
+            echo "Signup failed";
+        }
     }
 }
 ?>

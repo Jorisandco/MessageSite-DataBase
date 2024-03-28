@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 /* grid(s) */
@@ -40,9 +41,11 @@
     min-width: 10%;
     width: fit-content;
     height: fit-content;
-    box-shadow: #0000007d 2px 1px;
+    box-shadow: #0000007d 2px 3px;
     border-radius: 20px;
     padding: 5px;
+    margin-left: 20px;
+    margin-bottom: 8px;
 }
 
 #name {
@@ -52,13 +55,13 @@
 form{
     display: flex;
     justify-content: center;
-    padding: 20px;
+    padding: 8px;
 }
 
 #message2{
     border-radius: 20px;
     border: 2px solid #000;
-    margin: 15px;
+    margin: 5px;
     width: 60%;
     resize: none;
     padding: 5px;
@@ -77,4 +80,10 @@ form{
     margin: 15px;
     height: 25px;
     width: auto;
+}
+
+.image{
+    margin: 20px;
+    max-width: 250px;
+    height: auto;
 }

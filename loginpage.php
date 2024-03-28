@@ -13,16 +13,17 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $result = $conn->query($sql);
 
     if ($result->rowCount() > 0) {
-        echo "Login successful";
+
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            if($row['password'] == $password && $row['username'] == $_POST['username']) {
             echo "Welcome " . $row['username'];
+            echo "Login successful";
         }
         $_SESSION['username'] = $username;
         header("Location: ../index.php");
-    } else {
+    } }else {
         echo "Login failed";
-    }
-}
+    }}
 ?>
 <!DOCTYPE html>
 <html lang="en">
