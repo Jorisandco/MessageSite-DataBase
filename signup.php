@@ -22,7 +22,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         }
 
         // Insert the new user into the database
-        $insertQuery = "INSERT INTO UserData (username, password, admin) VALUES ('$username', '$password', 0)";
+        $insertQuery = "INSERT INTO userdata (username, password, admin) VALUES ('$username', '$password', 0)";
         $insertResult = $conn->exec($insertQuery);
         if ($insertResult) {
             $_SESSION['username'] = $username;
@@ -53,7 +53,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             <input type="password" name="password" id="password" required>
             <label for="password2">Confirm Password</label>
             <input type="password" name="password2" id="password" required>
-            <input type="submit" value="Login">
+            <input type="submit" id="sendbtn" value="Login">
         </form>
     </div>
 </body>

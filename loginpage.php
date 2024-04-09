@@ -9,7 +9,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
 
-    $sql = "SELECT * FROM UserData WHERE username = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM userdata WHERE username = '$username' AND password = '$password'";
     $result = $conn->query($sql);
 
     if ($result->rowCount() > 0) {
@@ -43,7 +43,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         <h1 class="stittle">Login</h1>
             <input type="text" name="username" id="username" placeholder="username">
             <input type="password" name="password" id="password" placeholder="password">
-            <input type="submit" value="Login">
+            <input type="submit" id="sendbtn" value="Login">
         </form>
     </div>
 </body>

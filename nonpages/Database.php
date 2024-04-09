@@ -2,10 +2,10 @@
 function connectToDatabase()
 {
   // connect to the database
-  $servername = "localhost";
+  $servername = "127.0.0.1";
   $password = "";
   $username = "root";
-  $dbname = "newdatabase";
+  $dbname = "MessagesSite";
 
   global $conn;
   try {

@@ -4,13 +4,13 @@ include 'nonpages/Database.php';
 connectToDatabase();
 if (isset($_SESSION['username'])) {
     $name = null;
-    $sql = "SELECT UserName, admin FROM userdata";
+    $sql = "SELECT username, admin FROM userdata";
     $result = $conn->query($sql); // Add this line to execute the query
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        if ($_SESSION['username'] == $row['UserName'] && $row['admin'] == 1) {
+        if ($_SESSION['username'] == $row['username'] && $row['admin'] == 1) {
             $name .= $_SESSION['username'];
             $name .= " (admin)";
-        } else if ($_SESSION['username'] == $row['UserName']){
+        } else if ($_SESSION['username'] == $row['username']){
             $name .= $_SESSION['username'];
         }
     }
